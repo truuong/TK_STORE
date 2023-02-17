@@ -52,7 +52,7 @@ require_once('./execute/global.php');
                   </li>
                   
                   <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
+                    <a href="./admin_product.php" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
                       aria-expanded="false">Products</a>
                     
                   </li>

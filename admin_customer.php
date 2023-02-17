@@ -25,21 +25,12 @@ if(!empty($_POST) && !empty($_POST['name'])&& !empty($_POST['username'])&& !empt
 }
 else if(isset($_POST['name_edit']))
  {
-  $ctm_field = explode(',',getField('customers'));
-  $ctm_edit = ['name_edit','password_edit','email_edit','phone_edit'];
+  $ctm_field = explode(',', getColumn('customers'));
+  $ctm_edit = ['name_edit','username_edit','password_edit','email_edit'];
   for ($i=0; $i < count($ctm_edit); $i++) { 
-	if($i >= 1) {
-		if($ctm_field[$i+1] == 'ctm_phone') {
-			customData('UPDATE customers SET ctm_phone = "'. $_POST[$ctm_edit[$i]] .'" WHERE ctm_username = "'. $_POST['username_edit'] .'"');
-		}
-		else {
-			editData('customers',$ctm_field[$i+1],$_POST[$ctm_edit[$i]],'ctm_username',$_POST['username_edit']);
-		}
+	  editData('customers','ctm_name',$_POST['name_edit'],'ctm_username',$_POST['username_edit']);
 	}
-	else {
-		editData('customers',$ctm_field[$i],$_POST[$ctm_edit[$i]],'ctm_username',$_POST['username_edit']);
-	}
-}
+	customData('UPDATE customers SET ctm_phone = "'. $_POST['phone_edit'] .'" WHERE ctm_username = "'. $_POST['username_edit'] .'"');
 	$_SESSION['success_edit'] = $_POST['username_edit'];
 	echo $_SESSION['success_edit'];
 	header_page();
@@ -152,7 +143,7 @@ if(isset($_GET['del']))
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </html>
 <div class="section-top-border">
-				<h3 class="mb-30 title_color">Products Management <button class="btn btn-info float-right mr-5" data-toggle="modal" data-target="#myModal">Add customer</button><button style="background-color: #f67590;" class="btn float-right mr-5 text-white btn-delete" disabled data-toggle="modal" data-target="#myModal" onclick="delete_customer()">Delete</button></h3>
+				<h3 class="mb-30 title_color">Customer Management <button class="btn btn-info float-right mr-5" data-toggle="modal" data-target="#myModal">Add customer</button><button style="background-color: #f67590;" class="btn float-right mr-5 text-white btn-delete" disabled data-toggle="modal" data-target="#myModal" onclick="delete_customer()">Delete</button></h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
 						<div class="table-head">
@@ -310,6 +301,5 @@ $.ajax({
 			location.href = 'admin_customer.php?vip='+obj_vip;
 		  }
 			
-
 	   }
 				</script>
